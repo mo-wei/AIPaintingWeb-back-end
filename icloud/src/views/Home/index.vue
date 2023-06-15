@@ -7,7 +7,7 @@
         </el-breadcrumb>
         </div>
         <div class="main">
-            <h2>欢迎进入云盘系统</h2>
+            <h2>欢迎进入绘批原画</h2>
         </div>
     </div>
 </template>

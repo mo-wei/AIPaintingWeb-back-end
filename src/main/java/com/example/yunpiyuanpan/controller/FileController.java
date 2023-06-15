@@ -70,6 +70,7 @@ public class FileController implements InitializingBean {
         // 确认用户空间
         YPUsersize userSize = fileQueryService.getUserSize(userId);
         logger.debug(userId.toString());
+        StpUtil.login(userId);//创建登录凭证
         if (userSize.getUserMaxsize() < userSize.getUserUsedsize() + ypFile.getFileSize()){
             return R.fail().message("空间不足");
         }

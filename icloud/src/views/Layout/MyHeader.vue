@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="header">
-            <span class="title">云盘系统</span>
+            <span class="title">绘批原画</span>
             <i v-if="!isCollapse"  @click="changeMenu" class="el-icon-s-fold" id="left1"></i>
             <i v-else @click="changeMenu" class="el-icon-s-unfold" id="right1"></i>
             <div class="header-right">
@@ -70,7 +70,7 @@
 }
 .title{
         font-size: 35px;
-        font-family: 楷体;
+        font-family: 微软雅黑;
         float: left;
     }
 

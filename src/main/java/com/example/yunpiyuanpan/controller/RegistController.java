@@ -3,7 +3,9 @@ package com.example.yunpiyuanpan.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.yunpiyuanpan.mapper.YPEmailregistMapper;
 import com.example.yunpiyuanpan.mapper.YPUserMapper;
+import com.example.yunpiyuanpan.mapper.YPUsersizeMapper;
 import com.example.yunpiyuanpan.pojo.YPUser;
+import com.example.yunpiyuanpan.pojo.YPUsersize;
 import com.example.yunpiyuanpan.service.RegistService;
 import com.example.yunpiyuanpan.util.Result;
 import io.swagger.annotations.Api;
@@ -24,6 +26,9 @@ public class RegistController {
 
     @Autowired
     private YPUserMapper ypUserMapper;
+
+    @Autowired
+    private YPUsersizeMapper ypUsersizeMapper;
 
     @GetMapping("/sendEmail")
     @ApiOperation(value = "发送邮件验证码", httpMethod = "GET")
@@ -81,6 +86,15 @@ public class RegistController {
         YPUser ypUser = ypUserMapper.selectOne(wrapper);
         result.putData("user",ypUser);
         result.setMessage("注册成功！");
+
+        YPUsersize ypUsersize = new YPUsersize();
+        ypUsersize.setUserId(ypUser.getId());
+        ypUsersize.setUserUsedsize(0);
+        ypUsersize.setUserMaxsize(Integer.MAX_VALUE);
+        ypUsersize.setUser_level(1);
+
+        ypUsersizeMapper.insertUserSize(ypUsersize);
+
         return ResponseEntity.ok(result);
     }
 

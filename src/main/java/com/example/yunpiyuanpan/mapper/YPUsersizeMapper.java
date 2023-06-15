@@ -2,6 +2,7 @@ package com.example.yunpiyuanpan.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.yunpiyuanpan.pojo.YPUsersize;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -22,5 +23,6 @@ public interface YPUsersizeMapper{
     @Update("update tb_usersize set user_usedsize = ${newSize} where user_id = ${userId}")
     public Integer updateUsedSize(double newSize, Long userId);
 
-
+    @Insert("insert into tb_usersize (user_id,user_level,user_maxsize,user_usedsize) values (#{userId},#{user_level},#{userMaxsize},#{userUsedsize})")
+    public int insertUserSize(YPUsersize ypUsersize);
 }

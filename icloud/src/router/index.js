@@ -7,6 +7,7 @@ import Layout from '../views/Layout/index.vue'
 
 // 异步
 const Mydisk = ()=>import('../views/Mydisk/Mydisk.vue')
+const AiProject = ()=>import('../views/AiProject/AiProject.vue')
 const Usercare = ()=>import('../views/Usercare/Usercare.vue')
 const Myshare = ()=>import('../views/Myshare/Myshare.vue')
 const Receiveshare = ()=>import('../views/Receiveshare/Receiveshare.vue')
@@ -53,7 +54,13 @@ const routes = [
         name:'Mydisk',
         component:Mydisk,
         // meta:{title:'我的网盘'},
-      },{
+      },
+      {
+        path:'/AiProject',
+        name:'AiProject',
+        component:AiProject,
+      },
+      {
         path:'/Usercare',
         name:'Usercare',
         component:Usercare

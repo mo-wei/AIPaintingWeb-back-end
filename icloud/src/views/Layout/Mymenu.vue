@@ -26,6 +26,10 @@
                     <i class="el-icon-upload"></i>
                     <span slot="title">我的网盘</span>
           </el-menu-item>
+          <el-menu-item  @click="aiProject">
+                    <i class="el-icon-upload"></i>
+                    <span slot="title">ai绘画</span>
+          </el-menu-item>
           <el-menu-item  @click="myFriends">
                   <i class="el-icon-s-custom"></i>
                   <span slot="title">关注用户</span>
@@ -84,6 +88,9 @@
                 this.$router.push({path:'/Mydisk'})
               }
             })
+          },
+          aiProject(){
+            this.$router.push({path:'/AiProject'})
           },
 
           myShare(){

@@ -2,7 +2,7 @@
 <body id="poster">
     <el-form class="login-container" label-position="left" label-width="0px">
         <h1 class="login_title">
-            云盘系统
+            绘批原画
         </h1>
 
         <el-form-item label="" class="cup">
@@ -37,7 +37,7 @@
     data() {
       return {
         loginForm: {
-          account: '1005772685@qq.com',
+          account: '976649026@qq.com',
           password: '123456'
         },
       }
@@ -84,7 +84,7 @@
               //检测是否登录成功
               if(sessionStorage.getItem("isLogin")=="true"){
                 that.$message({
-                  message: '成功登录，欢迎您来到云盘系统，' + sessionStorage.getItem("userName"),
+                  message: '成功登录，欢迎您来到绘批原画，' + sessionStorage.getItem("userName"),
                   type: 'success'
                 });
                 that.$router.push({path:'/Layout'});

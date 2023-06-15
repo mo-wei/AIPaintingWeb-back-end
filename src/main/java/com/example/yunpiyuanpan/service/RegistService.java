@@ -3,10 +3,8 @@ package com.example.yunpiyuanpan.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.yunpiyuanpan.mapper.YPEmailregistMapper;
 import com.example.yunpiyuanpan.mapper.YPUserMapper;
-import com.example.yunpiyuanpan.mapper.YPUsersizeMapper;
 import com.example.yunpiyuanpan.pojo.YPEmailRegist;
 import com.example.yunpiyuanpan.pojo.YPUser;
-import com.example.yunpiyuanpan.pojo.YPUsersize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -28,9 +26,6 @@ public class RegistService {
 
     @Autowired
     private YPUserMapper ypUserMapper;
-
-/*    @Autowired
-    FileQueryService fileQueryService;*/
 
     //判断用户注册使用的邮箱格式是否正确，然后判断是否已经存在
     public boolean isEmailLegal(String email){//测试成功
@@ -134,11 +129,7 @@ public class RegistService {
         ypUser.setPassword(password);
         ypUser.setEmail(email);
         ypUser.setPhone(phone);
-        //给用户一个初始化的容量
-        /*YPUsersize ypUsersize = new YPUsersize();
-        ypUsersize.setUserUsedsize(0);
-        ypUsersize.setUser_level(1);
-        ypUsersize.setUserMaxsize(4194304);*/
+
         ypUserMapper.insert(ypUser);
     }
 
