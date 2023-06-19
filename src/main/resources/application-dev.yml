@@ -34,6 +34,7 @@ storage-lib: "C:/YPFiles/"
 #二维码背景图片存放路径
 qrcodebgPath: "C://bg1.jpg"
 
+
 #生成二维码的存放路径
 qrcodewithbgPath: "C://qrcodewithbg.png"
 

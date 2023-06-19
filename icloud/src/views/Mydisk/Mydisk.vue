@@ -398,7 +398,6 @@
 
         getFile(event) {
           this.file=event.target.files[0];
-          console.log(this.file);
         },
 
         submitForm(event) {
