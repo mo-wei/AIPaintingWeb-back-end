@@ -1,41 +1,17 @@
 <template>
     <div class="mydisk">
-        <el-dialog
-          title="分享详情"
-          :visible.sync="dialogVisible"
-          width="30%">
-          <strong>您的分享二维码：</strong>
-<!--          <image width='390' height='200' :src="imgUrl"/>-->
-<!--          <image src="F://wallhaven/bg.jpg"></image>-->
-          <img :src="imgUrl" class="dialogImg">
-
-          <strong><br>您的文件下载地址：</strong>
-          <textarea id="textarea" cols="25" rows="1" v-model="fileUrl"></textarea>
-          <span slot="footer" class="dialog-footer">
-            <el-button @click="copy">复制</el-button>
-            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-          </span>
-        </el-dialog>
-        <!-- 按钮区域 -->
-<!--        <el-image :src="imgUrl"></el-image>-->
         <div class="header">
-            <!-- <el-button type="danger" >上传文件</el-button> -->
             <form style="heigth: 40px">
                 <input type="file" class="input1_" @change="getFile($event)">
                 <button class="btn1_" @click="submitForm($event)">提交</button>
             </form>
 
             <el-button type="primary" @click="createDir" style="margin-left: 30px">创建文件夹</el-button>
-<!--            <el-button type="info" @click="deleteFile">删除</el-button>-->
-<!--            <el-button type="primary" @click="shareFiles">分享</el-button>-->
             <el-button type="primary" @click="returnToLastDir()">返回上级</el-button>
-<!--            <el-button type="primary"></el-button>-->
         </div>
-<!--        展现面包屑-->
         <div class="bread">
           当前路径：{{pathString}}
         </div>
-      <!-- 表格区域展示视图数据 -->
         <div class="wrapper">
             <el-table :data="tableData" border ref="accountTable" style="width:100%">
 <!--                <el-table-column type="" width="100"> </el-table-column>-->
@@ -48,7 +24,6 @@
                   <template slot-scope="scope">
                     <el-button size="mini" v-if="scope.row.isfolder===1" @click="enterNextDir(scope.row)">进入</el-button>
                     <el-button size="mini" v-if="scope.row.isfolder===0" @click="download(scope.row)">下载</el-button>
-                    <el-button size="mini" @click="shareFile(scope.row)">分享</el-button>
                     <el-button size="mini" @click="handleEdit_(scope.row)">重命名</el-button>
                     <el-button size="mini" @click="moveFile(scope.row)">移动</el-button>
                     <el-button size="mini" type="danger" @click="deleteFile_(scope.row, scope.$index)">删除</el-button>
@@ -67,7 +42,6 @@
               show:false,
               tableData: this.$global_msg.disk,
               pathArr:[],
-              //点击分享按钮之后，值会变成blob的url地址，可以作为图片src进行返回
               imgUrl: "", 
               dialogVisible: false,
               fileUrl:''
@@ -142,67 +116,6 @@
             }
           })
         },
-
-        //文件分享
-        shareFile(row){
-
-          if(row.isfolder===1){
-            this.$message.warning("暂时不支持分享文件夹内容")
-            return;
-          }
-          var that = this;
-          //请求token，由于异步的关系，在弹窗弹出来之前要改完数据，所有这段放前面，收图片肯定比收字符串慢
-
-          // this.$loading("loading");//显示正在加载
-          //接下来的逻辑为，发起请求，成功加载/加载失败
-          console.log(sessionStorage.getItem("saToken"));
-          var url = "http://localhost:8989/fileShare/createQRCode1?fileId=" + row.id;
-          this.$axios({
-            url:url,
-            method:"GET",
-            headers:{
-              'satoken':sessionStorage.getItem("saToken")
-            },
-            responseType:"blob"
-          }).then(function (res){
-            console.log("请求发起成功");
-            console.log(res);
-            var typeArray = res.data;
-            var blob = new Blob([typeArray],{type:res.headers['Content-Type']});
-            var url = window.URL.createObjectURL(blob);
-            while(1){
-              console.log("还未获得url");
-              if(url!=''){
-                console.log("获得url了");
-                console.log(url);
-                that.imgUrl = url;
-                that.$axios({
-                  url:"http://localhost:8989/getShareCode?fileId="+row.id,
-                  method:"GET",
-                  headers:{
-                    'satoken':sessionStorage.getItem("saToken")
-                  },
-                }).then(res=>{
-                  console.log(res)
-                  var token=res.data.data["access_token"]
-                  that.fileUrl="http://loaclhost:8989/publicDownload?access_token="+token
-                  that.dialogVisible=true
-                })
-                break;
-              }
-            }
-            // var imgHtmlString = "<image src='" + url + "'>";
-            //弹窗
-            // that.$alert('<strong>您的分享二维码：</strong>' +
-            //     "<image width='390' height='200' src='" + url + "'>" +
-            //     '<strong>您的文件下载地址：</strong>', '分享详情', {
-            //   dangerouslyUseHTMLString: true
-            // });
-
-          })
-          
-        },
-
         // 文件夹或文件重命名
         handleEdit_(row) {
           this.$prompt('修改文件名', '提示', {

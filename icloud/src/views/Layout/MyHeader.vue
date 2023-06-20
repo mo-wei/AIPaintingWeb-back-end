@@ -5,15 +5,7 @@
             <i v-if="!isCollapse"  @click="changeMenu" class="el-icon-s-fold" id="left1"></i>
             <i v-else @click="changeMenu" class="el-icon-s-unfold" id="right1"></i>
             <div class="header-right">
-                <el-dropdown>
-                <span class="el-dropdown-link" style="color:#fff;">
-                多语言<i class="el-icon-arrow-down el-icon--right"></i>
-                </span>
-                   <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item>中文</el-dropdown-item>
-                        <el-dropdown-item>English</el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
+                
                 <div class="user"> 欢迎{{this.$global_msg.username}}:
                     <svg class="icon" aria-hidden="true" @click="userInformation()">
                         <use xlink:href="#icon-icon-test1"></use>
@@ -62,7 +54,7 @@
 .header{
     // display: flex;
     height: 60px;
-    background-color:#4682B4;
+    background-color:#000000;
     // width: 100%;
     line-height: 60px;
     color: #fff;

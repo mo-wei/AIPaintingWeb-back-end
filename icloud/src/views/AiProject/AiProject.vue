@@ -1,39 +1,37 @@
 <template>
   <div class="“common-layout">
     <el-container>
-      <el-aside width="400px">
+      <el-header >
         <el-container>
           <el-input
             v-model="paintingInput"
             maxlength="100"
             :rows="30"
             show-word-limit
-            type="textarea"
             placeholder="请输入描述"
           >
           </el-input>
         </el-container>
-      </el-aside>
+      </el-header>
 
       <el-container>
         <el-header>
           <el-button icon="search" size="large" round @click="getImage"
             >生成图片</el-button
           >
-          <el-button type="text" @click="download()"
-            >下载</el-button
-          >
         </el-header>
         <el-main>
           <img :src="urlx" alt="image" />
         </el-main>
+        <el-button type="text" @click="download()"
+            >下载</el-button
+          >
       </el-container>
     </el-container>
   </div>
 </template>
   <script>
-import { Message } from "element-ui";
-import Vue from "vue";
+
 export default {
   data() {
     return {
@@ -54,7 +52,7 @@ export default {
         method: "GET",
         url: url,
       }).then((res) => {
-        alert(res.data);
+        alert("生成中");
         (this.paintingInput = ""), (this.imageUrl = res.data);
       });
     },

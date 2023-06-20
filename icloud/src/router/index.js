@@ -8,10 +8,7 @@ import Layout from '../views/Layout/index.vue'
 // 异步
 const Mydisk = ()=>import('../views/Mydisk/Mydisk.vue')
 const AiProject = ()=>import('../views/AiProject/AiProject.vue')
-const Usercare = ()=>import('../views/Usercare/Usercare.vue')
-const Myshare = ()=>import('../views/Myshare/Myshare.vue')
-const Receiveshare = ()=>import('../views/Receiveshare/Receiveshare.vue')
-const Mycollect = ()=>import('../views/Mycollect/Mycollect.vue')
+
 const Bin = ()=>import('../views/Bin/Bin.vue')
 
 // 子级路由
@@ -53,7 +50,6 @@ const routes = [
         path:'/Mydisk',
         name:'Mydisk',
         component:Mydisk,
-        // meta:{title:'我的网盘'},
       },
       {
         path:'/AiProject',
@@ -61,22 +57,6 @@ const routes = [
         component:AiProject,
       },
       {
-        path:'/Usercare',
-        name:'Usercare',
-        component:Usercare
-      },{
-        path:'/Myshare',
-        name:'Myshare',
-        component:Myshare
-      },{
-        path:'/Receiveshare',
-        name:'Receiveshare',
-        component:Receiveshare
-      },{
-        path:'/Mycollect',
-        name:'Mycollect',
-        component:Mycollect
-      },{
         path:'/Bin',
         name:'Bin',
         component:Bin

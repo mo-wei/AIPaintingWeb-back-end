@@ -27,24 +27,8 @@
                     <span slot="title">我的网盘</span>
           </el-menu-item>
           <el-menu-item  @click="aiProject">
-                    <i class="el-icon-upload"></i>
+                    <i class="el-icon-picture"></i>
                     <span slot="title">ai绘画</span>
-          </el-menu-item>
-          <el-menu-item  @click="myFriends">
-                  <i class="el-icon-s-custom"></i>
-                  <span slot="title">关注用户</span>
-          </el-menu-item>
-          <el-menu-item  @click="myShare">
-                  <i class="el-icon-document-remove"></i>
-                  <span slot="title">我的分享</span>
-          </el-menu-item>
-          <el-menu-item  @click="shared">
-                  <i class="el-icon-document-add"></i>
-                  <span slot="title">收到分享</span>
-          </el-menu-item>
-          <el-menu-item  @click="mySave">
-                  <i class="el-icon-star-on"></i>
-                  <span slot="title">我的收藏</span>
           </el-menu-item>
           <el-menu-item  @click="myBin">
                   <i class="el-icon-delete"></i>
@@ -92,16 +76,7 @@
           aiProject(){
             this.$router.push({path:'/AiProject'})
           },
-
-          myShare(){
-            this.$router.push({path:'/Myshare'})
-          },
-          shared() {
-            this.$router.push({path:'/Receiveshare'})
-          },
-          mySave() {
-            this.$router.push({path:'/Mycollect'})
-          },
+          
           myBin () {
             var url = 'http://localhost:8989/'+ sessionStorage.getItem("userId") + '/getFilesByBinPath?path=/';
             this.axios({
@@ -116,9 +91,7 @@
               }
             })
           },
-          myFriends(){
-            this.$router.push({path:'/Usercare'})
-          },
+          
       },
     }
 </script>
@@ -126,7 +99,7 @@
 <style lang="less" scoped>
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 100%;
-    min-height: 400px;
+    min-height: 200px;
     text-align: center;
   }
 </style>
