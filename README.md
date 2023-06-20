@@ -1,2 +1,2 @@
-# AIPaintingWeb-back-end
-AI绘画网站后端
+# AIPaintingWeb
+AI绘画网站
