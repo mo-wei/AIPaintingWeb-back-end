@@ -51,36 +51,9 @@ export default {
       this.axios({
         method: "GET",
         url: url,
-      }).then((res) => {
+      }).then(() => {
         alert("生成中");
-        (this.paintingInput = ""), (this.imageUrl = res.data);
-      });
-    },
-    submitForm() {
-      let formData = new FormData();
-      formData.append("ifile", this.file);
-      formData.append("path", "/");
-
-      let config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          satoken: sessionStorage.getItem("saToken"),
-        },
-      };
-      console.log(config);
-      var url = "http://localhost:8989/upload";
-      this.$http.post(url, formData, config).then((res) => {
-        console.log(res);
-        let data = res.data;
-        if (data.code !== 10000) {
-          this.$message.error(data.message);
-        } else {
-          this.getFileAndFolder();
-          this.$message({
-            message: "上传成功",
-            type: "success",
-          });
-        }
+        (this.paintingInput = "");
       });
     },
     download() {
